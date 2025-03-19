@@ -1,10 +1,17 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Search, Calendar, MapPin, Users } from "lucide-react"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Search, Calendar, MapPin, Users } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { PublicNavbar } from "@/components/public-navbar";
 
 export default function EventsPage() {
   // Mock data for events
@@ -69,17 +76,22 @@ export default function EventsPage() {
       attendees: 60,
       interested: 150,
     },
-  ]
+  ];
 
   return (
     <main className="flex-1">
+      <PublicNavbar />
+
       <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">Upcoming Events</h1>
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Upcoming Events
+              </h1>
               <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Discover and join events related to your favorite hobbies and interests.
+                Discover and join events related to your favorite hobbies and
+                interests.
               </p>
             </div>
           </div>
@@ -88,7 +100,11 @@ export default function EventsPage() {
           <div className="mt-8 grid gap-4 md:grid-cols-4">
             <div className="relative md:col-span-2">
               <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input type="search" placeholder="Search events..." className="w-full bg-background pl-8" />
+              <Input
+                type="search"
+                placeholder="Search events..."
+                className="w-full bg-background pl-8"
+              />
             </div>
             <Select>
               <SelectTrigger>
@@ -125,7 +141,11 @@ export default function EventsPage() {
           {/* Events Grid */}
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {events.map((event) => (
-              <Link href={`/events/${event.id}`} key={event.id} className="group">
+              <Link
+                href={`/events/${event.id}`}
+                key={event.id}
+                className="group"
+              >
                 <div className="overflow-hidden rounded-lg border bg-background shadow-sm transition-all duration-200 event-card-hover">
                   <div className="relative aspect-video overflow-hidden">
                     <Image
@@ -135,10 +155,14 @@ export default function EventsPage() {
                       height={400}
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    <Badge className="absolute top-2 right-2">{event.category}</Badge>
+                    <Badge className="absolute top-2 right-2">
+                      {event.category}
+                    </Badge>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">{event.title}</h3>
+                    <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
+                      {event.title}
+                    </h3>
                     <div className="mt-2 flex items-center text-sm text-muted-foreground">
                       <Calendar className="mr-1 h-4 w-4" />
                       {event.date}
@@ -170,6 +194,5 @@ export default function EventsPage() {
         </div>
       </section>
     </main>
-  )
+  );
 }
-

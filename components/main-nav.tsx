@@ -1,11 +1,20 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Bell, Menu, X, LogOut, User, Settings, MessageSquare, Calendar } from "lucide-react"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Bell,
+  Menu,
+  X,
+  LogOut,
+  User,
+  Settings,
+  MessageSquare,
+  Calendar,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,29 +22,31 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 export function MainNav() {
-  const pathname = usePathname()
-  const [isOpen, setIsOpen] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Check if the current path is a signed-in page
   useEffect(() => {
-    const signedInPaths = ["/home", "/threads", "/profile", "/notifications"]
-    setIsLoggedIn(signedInPaths.some((path) => pathname.startsWith(path)))
-  }, [pathname])
+    const signedInPaths = ["/home", "/threads", "/profile", "/notifications"];
+    setIsLoggedIn(signedInPaths.some((path) => pathname.startsWith(path)));
+  }, [pathname]);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6 md:gap-10">
           <Link href="/" className="flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-block text-xl">Hobby Hunt</span>
+            <span className="hidden font-bold sm:inline-block text-xl">
+              Hobby Hunt
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -53,7 +64,9 @@ export function MainNav() {
                 <Link
                   href="/events"
                   className={`text-sm font-medium transition-colors hover:text-primary ${
-                    pathname === "/events" ? "text-primary" : "text-muted-foreground"
+                    pathname === "/events"
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                 >
                   Our Events
@@ -61,7 +74,9 @@ export function MainNav() {
                 <Link
                   href="/about"
                   className={`text-sm font-medium transition-colors hover:text-primary ${
-                    pathname === "/about" ? "text-primary" : "text-muted-foreground"
+                    pathname === "/about"
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                 >
                   About Us
@@ -69,7 +84,9 @@ export function MainNav() {
                 <Link
                   href="/contact"
                   className={`text-sm font-medium transition-colors hover:text-primary ${
-                    pathname === "/contact" ? "text-primary" : "text-muted-foreground"
+                    pathname === "/contact"
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                 >
                   Contact Us
@@ -80,7 +97,9 @@ export function MainNav() {
                 <Link
                   href="/home"
                   className={`text-sm font-medium transition-colors hover:text-primary ${
-                    pathname === "/home" ? "text-primary" : "text-muted-foreground"
+                    pathname === "/home"
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                 >
                   Home
@@ -88,7 +107,9 @@ export function MainNav() {
                 <Link
                   href="/threads"
                   className={`text-sm font-medium transition-colors hover:text-primary ${
-                    pathname === "/threads" ? "text-primary" : "text-muted-foreground"
+                    pathname === "/threads"
+                      ? "text-primary"
+                      : "text-muted-foreground"
                   }`}
                 >
                   Threads
@@ -119,9 +140,12 @@ export function MainNav() {
               </Link>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                  <Button
+                    variant="ghost"
+                    className="relative h-8 w-8 rounded-full"
+                  >
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src="/placeholder.svg" alt="User" />
+                      <AvatarImage src="/placeholder.jpg" alt="User" />
                       <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
                   </Button>
@@ -129,8 +153,12 @@ export function MainNav() {
                 <DropdownMenuContent className="w-56" align="end" forceMount>
                   <DropdownMenuLabel className="font-normal">
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium leading-none">John Doe</p>
-                      <p className="text-xs leading-none text-muted-foreground">john.doe@example.com</p>
+                      <p className="text-sm font-medium leading-none">
+                        John Doe
+                      </p>
+                      <p className="text-xs leading-none text-muted-foreground">
+                        john.doe@example.com
+                      </p>
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
@@ -162,7 +190,10 @@ export function MainNav() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="flex items-center space-x-2 md:hidden" onClick={toggleMenu}>
+        <button
+          className="flex items-center space-x-2 md:hidden"
+          onClick={toggleMenu}
+        >
           {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
@@ -258,6 +289,5 @@ export function MainNav() {
         </div>
       )}
     </header>
-  )
+  );
 }
-

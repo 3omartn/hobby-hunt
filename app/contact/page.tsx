@@ -1,16 +1,21 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { PublicNavbar } from "@/components/public-navbar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 export default function ContactPage() {
   return (
     <main className="flex-1">
+      <PublicNavbar />
+
       <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">Contact Us</h1>
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Contact Us
+              </h1>
               <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
                 Have questions or feedback? We'd love to hear from you.
               </p>
@@ -27,7 +32,8 @@ export default function ContactPage() {
               <div className="space-y-2">
                 <h2 className="text-2xl font-bold">Send us a message</h2>
                 <p className="text-muted-foreground">
-                  Fill out the form below and we'll get back to you as soon as possible.
+                  Fill out the form below and we'll get back to you as soon as
+                  possible.
                 </p>
               </div>
               <form className="space-y-4">
@@ -39,7 +45,10 @@ export default function ContactPage() {
                     >
                       First name
                     </label>
-                    <Input id="first-name" placeholder="Enter your first name" />
+                    <Input
+                      id="first-name"
+                      placeholder="Enter your first name"
+                    />
                   </div>
                   <div className="space-y-2">
                     <label
@@ -58,7 +67,11 @@ export default function ContactPage() {
                   >
                     Email
                   </label>
-                  <Input id="email" placeholder="Enter your email" type="email" />
+                  <Input
+                    id="email"
+                    placeholder="Enter your email"
+                    type="email"
+                  />
                 </div>
                 <div className="space-y-2">
                   <label
@@ -76,7 +89,11 @@ export default function ContactPage() {
                   >
                     Message
                   </label>
-                  <Textarea id="message" placeholder="Enter your message" className="min-h-[150px]" />
+                  <Textarea
+                    id="message"
+                    placeholder="Enter your message"
+                    className="min-h-[150px]"
+                  />
                 </div>
                 <Button type="submit" className="w-full">
                   <Send className="mr-2 h-4 w-4" />
@@ -89,7 +106,9 @@ export default function ContactPage() {
             <div className="flex flex-col justify-center space-y-8">
               <div className="space-y-2">
                 <h2 className="text-2xl font-bold">Contact Information</h2>
-                <p className="text-muted-foreground">You can also reach out to us using the information below.</p>
+                <p className="text-muted-foreground">
+                  You can also reach out to us using the information below.
+                </p>
               </div>
               <div className="grid gap-6">
                 <div className="flex items-start space-x-4">
@@ -97,7 +116,9 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-bold">Email</h3>
                     <p className="text-muted-foreground">info@hobbyhunt.com</p>
-                    <p className="text-muted-foreground">support@hobbyhunt.com</p>
+                    <p className="text-muted-foreground">
+                      support@hobbyhunt.com
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -105,7 +126,9 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-bold">Phone</h3>
                     <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                    <p className="text-muted-foreground">Mon-Fri, 9am-5pm EST</p>
+                    <p className="text-muted-foreground">
+                      Mon-Fri, 9am-5pm EST
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -136,7 +159,9 @@ export default function ContactPage() {
         <div className="container px-4 md:px-6">
           <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Frequently Asked Questions</h2>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Frequently Asked Questions
+              </h2>
               <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Find answers to common questions about Hobby Hunt.
               </p>
@@ -170,12 +195,16 @@ export default function ContactPage() {
                   "Navigate to the Threads page, browse the available threads, and click on one that interests you. You can then read the discussion and add your own comments.",
               },
               {
-                question: "What if I need help with something not covered here?",
+                question:
+                  "What if I need help with something not covered here?",
                 answer:
                   "Feel free to contact us using the form on this page or by emailing support@hobbyhunt.com. We're here to help!",
               },
             ].map((faq, i) => (
-              <div key={i} className="rounded-lg border bg-background p-6 shadow-sm">
+              <div
+                key={i}
+                className="rounded-lg border bg-background p-6 shadow-sm"
+              >
                 <h3 className="text-lg font-bold">{faq.question}</h3>
                 <p className="mt-2 text-muted-foreground">{faq.answer}</p>
               </div>
@@ -184,6 +213,5 @@ export default function ContactPage() {
         </div>
       </section>
     </main>
-  )
+  );
 }
-

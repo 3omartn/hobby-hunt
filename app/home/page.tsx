@@ -1,28 +1,44 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Users, X } from "lucide-react"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { useState } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Users, X } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function HomePage() {
-  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
-  const [categoryFilter, setCategoryFilter] = useState("")
-  const [rsvpStatus, setRsvpStatus] = useState({})
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [rsvpStatus, setRsvpStatus] = useState({});
 
-  // Mock data for events
   const events = [
     {
       id: 1,
       title: "Gaming Tournament: League of Legends",
       date: "March 15, 2025",
       location: "Online",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/placeholder.jpg?height=400&width=600",
       category: "Gaming",
       attendees: 128,
       interested: 256,
@@ -95,25 +111,27 @@ export default function HomePage() {
         "Get fit with our high-intensity interval training bootcamp. This challenging workout is designed for all fitness levels and will help you build strength and endurance. Bring water and a towel!",
       organizer: "Active Life Fitness",
     },
-  ]
+  ];
 
   // Type for Event
-  type Event = (typeof events)[0]
+  type Event = (typeof events)[0];
 
   const openEventDialog = (event: Event) => {
-    setSelectedEvent(event)
-    setIsDialogOpen(true)
-  }
+    setSelectedEvent(event);
+    setIsDialogOpen(true);
+  };
 
-  const filteredEvents = categoryFilter ? events.filter((event) => event.category === categoryFilter) : events
+  const filteredEvents = categoryFilter
+    ? events.filter((event) => event.category === categoryFilter)
+    : events;
 
   const handleRSVP = (eventId, e) => {
-    e.stopPropagation() // Prevent the card click event from firing
+    e.stopPropagation(); // Prevent the card click event from firing
     setRsvpStatus({
       ...rsvpStatus,
       [eventId]: !rsvpStatus[eventId],
-    })
-  }
+    });
+  };
 
   return (
     <main className="flex-1">
@@ -121,9 +139,12 @@ export default function HomePage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">Welcome to Hobby Hunt</h1>
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Welcome to Hobby Hunt
+              </h1>
               <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-                Discover upcoming events based on your interests and connect with others.
+                Discover upcoming events based on your interests and connect
+                with others.
               </p>
             </div>
           </div>
@@ -134,7 +155,10 @@ export default function HomePage() {
               <Input placeholder="Search events..." className="w-full" />
             </div>
             <div className="flex flex-wrap gap-2 mt-4">
-              <Button variant={categoryFilter === "" ? "default" : "outline"} onClick={() => setCategoryFilter("")}>
+              <Button
+                variant={categoryFilter === "" ? "default" : "outline"}
+                onClick={() => setCategoryFilter("")}
+              >
                 All
               </Button>
               <Button
@@ -150,7 +174,9 @@ export default function HomePage() {
                 Music
               </Button>
               <Button
-                variant={categoryFilter === "Photography" ? "default" : "outline"}
+                variant={
+                  categoryFilter === "Photography" ? "default" : "outline"
+                }
                 onClick={() => setCategoryFilter("Photography")}
               >
                 Photography
@@ -207,13 +233,17 @@ export default function HomePage() {
                 />
                 <CardContent>
                   <p className="text-sm text-muted-foreground">{event.date}</p>
-                  <p className="text-sm text-muted-foreground">{event.location}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {event.location}
+                  </p>
                 </CardContent>
                 <CardFooter>
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center gap-2">
                       <Users className="h-4 w-4" />
-                      <p className="text-sm text-muted-foreground">{event.attendees} Attendees</p>
+                      <p className="text-sm text-muted-foreground">
+                        {event.attendees} Attendees
+                      </p>
                     </div>
                     <Button
                       variant={rsvpStatus[event.id] ? "default" : "outline"}
@@ -240,28 +270,33 @@ export default function HomePage() {
         </DialogHeader>
         <DialogContent>
           <Image
-            src={selectedEvent?.image || "/placeholder.svg?height=400&width=600"}
+            src={
+              selectedEvent?.image || "/placeholder.svg?height=400&width=600"
+            }
             alt={selectedEvent?.title || ""}
             width={600}
             height={400}
             className="rounded-lg"
           />
-          <p className="mt-4 text-sm text-muted-foreground">{selectedEvent?.description}</p>
+          <p className="mt-4 text-sm text-muted-foreground">
+            {selectedEvent?.description}
+          </p>
           <div className="mt-4 flex justify-end">
             <Button
               onClick={() => {
                 if (selectedEvent) {
-                  handleRSVP(selectedEvent.id, { stopPropagation: () => {} })
+                  handleRSVP(selectedEvent.id, { stopPropagation: () => {} });
                 }
-                setIsDialogOpen(false)
+                setIsDialogOpen(false);
               }}
             >
-              {selectedEvent && rsvpStatus[selectedEvent.id] ? "Cancel RSVP" : "RSVP to Event"}
+              {selectedEvent && rsvpStatus[selectedEvent.id]
+                ? "Cancel RSVP"
+                : "RSVP to Event"}
             </Button>
           </div>
         </DialogContent>
       </Dialog>
     </main>
-  )
+  );
 }
-
